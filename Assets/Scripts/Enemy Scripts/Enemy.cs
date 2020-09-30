@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
     private Transform attackPoint;
     [SerializeField]
     private GameObject bulletPrefab;
+    [SerializeField]
+    private GameObject explosionEffect;
 
     private Text isScore;
 
@@ -59,8 +61,6 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-
-        //isScore.text = "Score: " + score;
 
         EnemyMovement();
         Rotate();
@@ -103,10 +103,12 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+       
+        
         if(collision.tag == "Bullet")
         {
-            
-            score += 1;
+
+            Instantiate(explosionEffect, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

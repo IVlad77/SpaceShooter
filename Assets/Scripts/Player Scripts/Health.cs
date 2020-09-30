@@ -2,13 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     [SerializeField]
-    private float health;
+    private int maxHealth = 100;
     [SerializeField]
-    private float shield = 0.0f;
+    private int currentHealth;
+    [SerializeField]
+    private int currentShield = 0;
+    [SerializeField]
+    private int maxShield = 100;
     [SerializeField]
     private int shieldStack = 0;
 
@@ -21,13 +26,17 @@ public class Health : MonoBehaviour
 
     private GameObject go;
 
-    
+    public ShieldBar shieldBar;
+    public HealthBar healthBar;
     Renderer rend;
 
     private int damage = 15;
 
     private void Start()
     {
+        currentShield = 0;
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
         rend = GetComponent<Renderer>();
         rend.enabled = true;
     }
@@ -43,11 +52,11 @@ public class Health : MonoBehaviour
     {
         
 
-        if((collision.gameObject.tag == "Asteroid" || collision.gameObject.tag == "Enemy") && shield > 0)
+        if((collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet") && currentShield > 0)
         {
             ShieldDamage(damage);
         }
-        else if(collision.gameObject.tag == "Asteroid" || collision.gameObject.tag == "Enemy")
+        else if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet")
         {
             PlayerTakeDamage(damage);
         }
@@ -67,9 +76,11 @@ public class Health : MonoBehaviour
 
     private void PlayerTakeDamage(int damage)
     {
-        health -= damage;
+        currentHealth -= damage;
 
-        if(health <= 0)
+        healthBar.SetHealth(currentHealth);
+
+        if(currentHealth <= 0)
         {
             StartCoroutine(Dead());
             
@@ -81,7 +92,8 @@ public class Health : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C) && shieldStack > 0)
         {
-            shield = 100.0f;
+            currentShield = maxShield;
+            shieldBar.SetMaxShield(maxShield);
             go = Instantiate(shieldPrefab, transform.position, transform.rotation);
             go.transform.parent = this.transform;
             shieldStack -= 1;
@@ -91,9 +103,11 @@ public class Health : MonoBehaviour
 
     public void ShieldDamage(int damage)
     {
-        shield -= damage;
+        currentShield -= damage;
 
-        if (shield <= 0)
+        shieldBar.SetShield(currentShield);
+
+        if (currentShield <= 0)
         {
             Destroy(go);
         }
@@ -106,9 +120,9 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(5);
         Debug.Log("respawn");
         playerTransform.position = respawnPoint.position;
+        currentHealth = maxHealth;
         rend.enabled = true;
-        health = 100.0f;
     }
 
-
+  
 }

@@ -8,10 +8,9 @@ public class BulletScript : MonoBehaviour
 {
     [SerializeField]
     private float speed = 5.0f;
-    [SerializeField]
-    private float deactivateTimer = 3.0f;
+    /*[SerializeField]
+    private float deactivateTimer = 3.0f;*/
 
- 
 
     [HideInInspector]
     public bool isEnemyBullet = false;
@@ -53,6 +52,9 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+       
+        
+        
         if(collision.tag == "Bullet" || collision.tag == "Enemy")
         {
             

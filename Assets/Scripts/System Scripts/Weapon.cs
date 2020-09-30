@@ -40,20 +40,11 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Obstacle obstacle = collision.GetComponent<Obstacle>();
-        EnemyAirShip enemy = collision.GetComponent<EnemyAirShip>();
-
-
-        if(obstacle != null)
-        {
-            obstacle.TakeDamage(damage);
-            Destroy(gameObject);
-            
-        }
+       
 
         if(collision.gameObject.tag == "Enemy")
         {
-            enemy.TakeDamage(damage);
+            
             Destroy(gameObject);
         }
 
