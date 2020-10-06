@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddddafca6f0dfd409a0bcdeea4f9103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 5
+  timer: 20
   shieldPickup: {fileID: 8270101828607219161, guid: 98e6f9444b9fd4042924ab28d7679c62, type: 3}
 --- !u!4 &212466983
 Transform:
@@ -816,6 +816,14 @@ PrefabInstance:
       propertyPath: shieldBar
       value: 
       objectReference: {fileID: 2135916690}
+    - target: {fileID: 5192741170659245092, guid: 72196a717ba055547919c85569ec287b, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.055081725
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192741170659245092, guid: 72196a717ba055547919c85569ec287b, type: 3}
+      propertyPath: m_Size.y
+      value: 0.36983657
+      objectReference: {fileID: 0}
     - target: {fileID: 5192741170659245094, guid: 72196a717ba055547919c85569ec287b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.08
@@ -859,6 +867,10 @@ PrefabInstance:
     - target: {fileID: 5192741170659245094, guid: 72196a717ba055547919c85569ec287b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192741170693541138, guid: 72196a717ba055547919c85569ec287b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.316
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72196a717ba055547919c85569ec287b, type: 3}

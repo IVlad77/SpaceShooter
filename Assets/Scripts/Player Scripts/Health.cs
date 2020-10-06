@@ -36,6 +36,7 @@ public class Health : MonoBehaviour
     {
         currentShield = 0;
         currentHealth = maxHealth;
+        shieldBar.SetShield(currentShield);
         healthBar.SetMaxHealth(maxHealth);
         rend = GetComponent<Renderer>();
         rend.enabled = true;
@@ -121,6 +122,7 @@ public class Health : MonoBehaviour
         Debug.Log("respawn");
         playerTransform.position = respawnPoint.position;
         currentHealth = maxHealth;
+        healthBar.SetHealth(currentHealth);
         rend.enabled = true;
     }
 
