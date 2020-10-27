@@ -15,13 +15,12 @@ public class BulletScript : MonoBehaviour
     [HideInInspector]
     public bool isEnemyBullet = false;
 
+   
 
 
     private void Start()
     {
 
-        
-        
         if(isEnemyBullet)
         {
             speed *= -1.0f;
@@ -33,8 +32,8 @@ public class BulletScript : MonoBehaviour
 
     private void Update()
     {
-        
         Move();
+       
     }
 
     void Move()
@@ -52,13 +51,13 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       
-        
+
         
         if(collision.tag == "Bullet" || collision.tag == "Enemy")
         {
             
             Destroy(gameObject);
+            
             
         }
     }
